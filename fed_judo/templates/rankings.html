@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}Ranking{% endblock %}
+
+{% block body %}
+
+
+   <div class="container-fluid">
+      <div class="row content">
+        <div class="col-sm-1 sidenav">
+
+        </div>
+
+        <div class="col-sm-10">
+          <h1>Ranking</h1>
+          Escolha o que RAnking que deseja visualizar:<br>
+          <input list="filtros_rankings" />
+          <datalist id="filtros_rankings">
+            <option value="Academias">Academias</option>
+            <option value="Atletas Masculinos">Atletas Masculinos</option>
+            <option value="Atletas Femininos">Atletas Femininos</option>
+
+          </datalist>
+          <div class="collapse navbar-collapse" id="myNavbar">
+
+          </div>
+
+
+          <hr>
+
+          	<table class="table">
+			  <thead class="thead-default">
+			    <tr>
+			      <th>Colocação</th>
+			      <th>Academia</th>
+			      <th>Pontuação</th>
+
+			    </tr>
+			  </thead>
+			  <tbody>
+
+          {% for ac in academias %}
+          <tr>
+
+  			      <th scope="row"></th>
+  			      <td>{{ac.nome_Academia}}</td>
+              <td>
+                {% if ac.pontuacao %}
+                  {{ac.pontuacao}}
+                {% else %}
+                  0
+                {% endif %}
+              </td>
+
+			    </tr>
+          {% endfor %}
+
+			  </tbody>
+			</table>
+
+
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+{% endblock %}
