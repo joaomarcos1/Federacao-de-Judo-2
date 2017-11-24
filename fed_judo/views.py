@@ -112,7 +112,38 @@ def cadastro_noticias(request):
 def administracao(request):
     return render (request, 'administracao.html')
 
+'''
+def cadastro_usuario(request):
+	if not request.user.is_authenticated():
+		form = RegistrationForm(request.POST or None)
+		if form.is_valid():
+			user = form.save(commit=False)
+			username = form.cleaned_data['username']
+			first_name = form.cleaned_data['first_name']
+			last_name = form.cleaned_data['last_name']
+			email = form.cleaned_data['email']
+			password = form.cleaned_data['password1']
+			password2 = form.cleaned_data['password2']
+			if password != password2:
+				if first_name == '' or last_name == '' or email == '':
+					return render(request, 'register.html')
+				else:
+					return render(request, 'register.html')
+			elif first_name == '' or last_name == '' or email == '':
+				return render(request, 'register.html')
+			user.set_password(password)
+			user.save()
 
+			if user is not None:
+				if user.is_active:
+					return redirect('/index')#criar uma tela de confirmacao de registro de usuario
+		return render(request, 'cadastro_usuario.html', {'form':form})
+	else:
+		return HttpResponseRedirect('/index')
+
+
+
+'''
 def cadastro_usuario(request):
 	usuario = Usuario()
 	codigo = 0

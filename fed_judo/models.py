@@ -7,16 +7,17 @@ from django.contrib.auth.models import User
 
 
 class Usuario(models.Model):
+    user = models.OneToOneField(User, default=1)
     cpf = models.IntegerField(unique=True,null=True)
-    nome = models.CharField(max_length=50,null=True)
-    idade = models.IntegerField(null=True)
+    #nome = models.CharField(max_length=50,null=True)
+    #idade = models.IntegerField(null=True)
     tipo_usuario = models.CharField(max_length=30, null=True)
     telefone = models.TextField()
     endereco = models.TextField()
     data_nascimento = models.DateTimeField(blank=True,null=True)
     #login = models.OneToOneField(User)
-    username = models.CharField(max_length=50,unique=True,null=True)
-    password = models.CharField(max_length=50,null=True)
+    #username = models.CharField(max_length=50,unique=True,null=True)
+    #password = models.CharField(max_length=50,null=True)
 
     def setTipoUsuario(self, tipo_usuario=''):
         self.tipo_usuario = tipo_usuario
@@ -56,8 +57,9 @@ class Usuario(models.Model):
         return self.password
     def setPassword(self,password=''):
         self.password = password
+        
     def __str__(self):
-        return self.nome
+        return self.user.username
 
 class Noticia(models.Model):
     titulo = models.TextField()
