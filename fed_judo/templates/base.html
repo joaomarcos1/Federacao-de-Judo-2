@@ -51,10 +51,21 @@
 
         <ul class="nav navbar-nav navbar-right">
               <!--<li><a href="cadastro_usuario"><span class="glyphicon glyphicon-user"></span>Cadastre-se</a></li>-->
-              <li><a id="logindex" href="login"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+              {% if user.username %}
+              <li><a id="logindex" href="interface_usuario"><span class="glyphicon glyphicon-user"></span> {{user.username}}</a></li>
+              <li>
+                <a data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-option-vertical"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="interface_usuario"> Meu Perfil</a></li>
+                    <li><a href="logout"> Sair</a></li>
+                  </ul>
               </li>
+              {% else %}
+              <li><a id="logindex" href="login"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+
 
               <li><a href="cadastro_usuario"><span class="glyphicon glyphicon-user"></span>Cadastre-se</a></li>
+              {% endif %}
               <!--
               <li><form class="form-inline pull-xs-right" style="margin-top: 8px;"> <input class="form-control" type="text"  placeholder="Pesquise">
                 </form>
@@ -62,13 +73,7 @@
               </li>
               -->
               <!-- Isso só pode ser exibido caso o usuário esteja logado -->
-              <li>
-                <a data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-option-vertical"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="interface_usuario"> Meu Perfil</a></li>
-                    <li><a href="#"> Sair</a></li>
-                  </ul>
-              </li>
+
         </ul>
 
         </div>

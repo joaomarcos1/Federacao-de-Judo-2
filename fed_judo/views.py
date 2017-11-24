@@ -203,15 +203,52 @@ def login_user(request):#Este esta sendo usado para LOGIN
                 if request.user.is_staff:
                     return redirect('/admin')
                 else:
-                    return render(request,'interface_usuario.html',{'user':user})
+                    #return render(request,'interface_usuario.html',{'user':user})
+                    return render(request,'interface_usuario.html')
+
             else:
-                return render(request, 'login.html', {'error_message': 'Your account has been disabled'})
+                return render(request, 'login.html', {'error_message': 'Sua conta não está ativa.'})
         else:
             return render(request, 'login.html', {'error_message': 'Invalid login'})
     return render(request, 'login.html')
 
 
 
+
+
+def interface_usuario(request, pk=None):
+    if not request.user.is_authenticated():
+        return redirect('/login')
+
+    else:
+        if pk:
+            user = User.objects.get(pk=pk)
+        else:
+            user = request.user
+            args = {'user': user}
+            #posts = Post.objects.filter(author=user)
+            #posts = posts.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+            return render(request, 'interface_usuario.html', {'args': args})
+
+
+
+
+    return render (request, 'interface_usuario.html')
+
+
+def logout(request):
+	auth.logout(request)
+	return render_to_response('index.html')
+
+
+def informacoes_eventos(request):
+    return render (request, 'informacoes_eventos.html')
+
+
+
+
+
+#  VIEWS NAO UTILIZADAS - NAO MEXER
 def user_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -243,11 +280,3 @@ def login_alternativo(request):
             else:
                 return render(request, 'login.html', {'error_message': 'Invalid login'})
     return render(request, 'login.html')
-
-
-def interface_usuario(request):
-    return render (request, 'interface_usuario.html')
-
-
-def informacoes_eventos(request):
-    return render (request, 'informacoes_eventos.html')
