@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404,render_to_response,redirect
 from .models import Usuario, Evento, FaleConosco, Academia, Noticia
 
 from django.http import HttpResponse
@@ -189,21 +189,29 @@ def consulta(request):
 	return render(request,'paginas/consulta.html',{'codigo':codigo})
 
 
-def login_user(request):
+def login_user(request):#Este esta sendo usado para LOGIN
     if request.method == "POST":
-        username = request.POST['username']
-        password = request.POST['password']
+        #username = request.POST['username']
+        #password = request.POST['password']
+        username = request.POST.get('username')
+        password = request.POST.get('password')
         user = authenticate(username=username, password=password)
         if user is not None:
             if user.is_active:
-                login(request, user)
-                return render(request,'interface_usuario.html',{'user':user})
+                #login(request, user)
+                auth.login(request, user)
+                if request.user.is_staff:
+                    return redirect('/admin')
+                else:
+                    return render(request,'interface_usuario.html',{'user':user})
             else:
                 return render(request, 'login.html', {'error_message': 'Your account has been disabled'})
         else:
             return render(request, 'login.html', {'error_message': 'Invalid login'})
     return render(request, 'login.html')
-    
+
+
+
 def user_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -235,6 +243,8 @@ def login_alternativo(request):
             else:
                 return render(request, 'login.html', {'error_message': 'Invalid login'})
     return render(request, 'login.html')
+
+
 def interface_usuario(request):
     return render (request, 'interface_usuario.html')
 
