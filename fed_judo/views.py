@@ -62,12 +62,12 @@ def rankings(request):
 
 def login(request):
     if (request.method == 'POST'):
-        username = request.POST.get('username')#'teste'# aqui e pego o que está no formulario html e salvo na var de ususario
-        password = request.POST.get('senha')#'tomaz123'# aqui e pego o que está no formulario html e salvo na var de senha
-        print(username)#isso é so um print comum
-        user  = auth.authenticate(username=username, password=password)# essa função pronta do djanco para verificae e logar em uma conta
+        username = request.POST.get('username')#'teste'# aqui e pego o que esta no formulario html e salvo na var de ususario
+        password = request.POST.get('senha')#'tomaz123'# aqui e pego o que esta no formulario html e salvo na var de senha
+        print(username)#isso e so um print comum
+        user  = auth.authenticate(username=username, password=password)# essa funcao pronta do djanco para verificae e logar em uma conta
         if user is not None:
-            auth.login(request, user)#aqui é sogado e construido a request com os dados de
+            auth.login(request, user)#aqui e sogado e construido a request com os dados de
             return HttpResponseRedirect('/index/')#tela de feeds chamada se der certo logui
             if request.user.is_authenticaded():
                 return HttpResponseRedirect('/index/')
@@ -185,7 +185,7 @@ def fale_conosco(request):
     return render(request, 'fale_conosco.html', {'codigo':codigo})
 
 
-def cadastro_academias(request):#corrigir a atribuição de id para academia/inserir pesquisa para verificar se o valor já está salvo no banco
+def cadastro_academias(request):#corrigir a atribuicao de id para academia/inserir pesquisa para verificar se o valor ja esta salvo no banco
     academia = Academia()
     codigo = 0
     if (request.method == 'POST'):
@@ -238,7 +238,7 @@ def login_user(request):#Este esta sendo usado para LOGIN
                     return render(request,'interface_usuario.html')
 
             else:
-                return render(request, 'login.html', {'error_message': 'Sua conta não está ativa.'})
+                return render(request, 'login.html', {'error_message': 'Sua conta nao esta ativa.'})
         else:
             return render(request, 'login.html', {'error_message': 'Invalid login'})
     return render(request, 'login.html')
@@ -311,3 +311,28 @@ def login_alternativo(request):
             else:
                 return render(request, 'login.html', {'error_message': 'Invalid login'})
     return render(request, 'login.html')
+def cadastro_usuario(request):
+        form = RegistrationForm(request.POST or None)        
+        if form.is_valid():
+            user = form.save(commit=False)
+            username = form.cleaned_data['username']
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']          
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password1']
+            password2 = form.cleaned_data['password2']
+            if password != password2:
+                if first_name == '' or last_name == '' or email == '':
+                    return render(request, 'cadastro_usuario.html')
+                else:
+                    return render(request, 'cadastro_usuario.html')
+            elif first_name == '' or last_name == '' or email == '':
+                return render(request, 'cadastro_usuario.html')
+            user.set_password(password)
+            user.save()
+
+
+            if user is not None:
+                if user.is_active:
+                    return redirect('/register_success')                    
+        return render(request, 'cadastro_usuario.html', {'form':form})

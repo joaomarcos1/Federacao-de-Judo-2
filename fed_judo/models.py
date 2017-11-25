@@ -7,13 +7,13 @@ from django.contrib.auth.models import User
 
 
 class Usuario(models.Model):
-    user = models.OneToOneField(User, default=1)
+    #user = models.OneToOneField(User, default=1)
     cpf = models.IntegerField(unique=True,null=True)
     #nome = models.CharField(max_length=50,null=True)
     #idade = models.IntegerField(null=True)
     tipo_usuario = models.CharField(max_length=30, null=True)
-    telefone = models.TextField()
-    endereco = models.TextField()
+    telefone = models.IntegerField()
+    endereco = models.CharField(max_length=50)
     data_nascimento = models.DateTimeField(blank=True,null=True)
     #login = models.OneToOneField(User)
     #username = models.CharField(max_length=50,unique=True,null=True)
@@ -59,8 +59,8 @@ class Usuario(models.Model):
         self.password = password
 
     def __str__(self):
-        return self.user.username
-
+        return self.telefone
+        
 class Noticia(models.Model):
     titulo = models.TextField()
     corpo = models.TextField()
