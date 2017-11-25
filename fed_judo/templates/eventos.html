@@ -22,9 +22,11 @@
 
               <h3 class="text-info" > {{a.nome_evento}}</h3
 
-              <h3 class="text-info" ><!--<a href="informacoes_eventos" style="text-decoration: none; color: blue">--> {{a.nome_evento}} </h3
+              <h3 class="text-info" ><!--<a href="informacoes_eventos" style="text-decoration: none; color: blue">--> {{a.nome_evento}} </h3>
 
-
+              {% if user.username != '' %}
+              <br><br><a href="#">Inscreva-se No Evento!</a>
+              {% endif %}
               <hr>
           {% endfor %}
         </div>

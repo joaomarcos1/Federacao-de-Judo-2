@@ -57,7 +57,7 @@ class Usuario(models.Model):
         return self.password
     def setPassword(self,password=''):
         self.password = password
-        
+
     def __str__(self):
         return self.user.username
 
