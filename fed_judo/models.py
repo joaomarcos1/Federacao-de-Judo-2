@@ -4,17 +4,70 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+class TipoUsuario(models.Model):
+    tipo_usuario = models.TextField()
+    def __str__(self):
+        return self.tipo_usuario
+
+
+
+class Evento(models.Model):
+    #usuario_proponente = models.ForeignKey(Usuario, default=1)
+    nome_evento = models.TextField()
+    data_inicio = models.DateTimeField(blank=True,null=True)
+    data_fim = models.DateTimeField(blank=True,null=True)
+    premiacao = models.TextField()
+    local = models.TextField(blank=True)
+    descricao = models.TextField(blank=True)
+
+    def setDescricao(self, descricao):
+        self.descricao = descricao
+    def getDescricao(self):
+        return self.descricao
+
+    def setLocalEvento(self, local=''):
+        self.local = local
+    def getLocalEvento(self):
+        return self.local
+
+    def setNome_Evento(self, nome_evento=''):
+        self.nome_evento = nome_evento
+    def getNome_Evento(self):
+        return self.nome_evento
+
+    def setData_Inicio(self, data_inicio=''):
+        self.data_inicio = data_inicio
+    def getData_Inicio(self):
+        return self.data_inicio
+
+    def setData_Fim(self, data_fim=''):
+        self.data_fim = data_fim
+    def getData_Fim(self):
+        return self.data_fim
+
+    def setPremiacao(self, premiacao=''):
+        self.premiacao = premiacao
+    def getPremiacao(self):
+        return self.premiacao
+
+    def __str__(self):
+        return self.nome_evento
+
+
+
+
 
 
 class Usuario(models.Model):
-    #user = models.OneToOneField(User, default=1)
+    user = models.OneToOneField(User, default=1)
     cpf = models.IntegerField(unique=True,null=True)
     #nome = models.CharField(max_length=50,null=True)
     #idade = models.IntegerField(null=True)
-    tipo_usuario = models.CharField(max_length=30, null=True)
+    tipo_usuario = models.ForeignKey(TipoUsuario, default=1)
     telefone = models.IntegerField()
     endereco = models.CharField(max_length=50)
     data_nascimento = models.DateTimeField(blank=True,null=True)
+    eventos_cadastrado = models.ForeignKey(Evento, default=1)
     #login = models.OneToOneField(User)
     #username = models.CharField(max_length=50,unique=True,null=True)
     #password = models.CharField(max_length=50,null=True)
@@ -59,9 +112,10 @@ class Usuario(models.Model):
         self.password = password
 
     def __str__(self):
-        return self.telefone
+        return self.user.username
         
 class Noticia(models.Model):
+    usuario = models.OneToOneField(Usuario, default=1)
     titulo = models.TextField()
     corpo = models.TextField()
     data_lancamento_noticia = models.DateTimeField(null=True)
@@ -92,7 +146,7 @@ class Noticia(models.Model):
 
 
 class Academia(models.Model):
-    id_academia = models.IntegerField()
+    #id_academia = models.IntegerField()
     nome_Academia = models.TextField()
     endereco_academia = models.TextField()
     limite_atletas = models.IntegerField(null=True)
@@ -145,6 +199,7 @@ class Academia(models.Model):
 
 
 class Atleta(models.Model):
+    usuario = models.OneToOneField(Usuario, default=1)
     academia_Associada = models.ForeignKey(Academia)
     categoria = models.TextField()
     graduacao = models.TextField()
@@ -157,47 +212,6 @@ class Administrador(models.Model):
 class Juiz(models.Model):
     posicao = models.TextField()
     funcao = models.TextField()
-
-class Evento(models.Model):
-    nome_evento = models.TextField()
-    data_inicio = models.DateTimeField(blank=True,null=True)
-    data_fim = models.DateTimeField(blank=True,null=True)
-    premiacao = models.TextField()
-    local = models.TextField(blank=True)
-    descricao = models.TextField(blank=True)
-
-    def setDescricao(self, descricao):
-        self.descricao = descricao
-    def getDescricao(self):
-        return self.descricao
-
-    def setLocalEvento(self, local=''):
-        self.local = local
-    def getLocalEvento(self):
-        return self.local
-
-    def setNome_Evento(self, nome_evento=''):
-        self.nome_evento = nome_evento
-    def getNome_Evento(self):
-        return self.nome_evento
-
-    def setData_Inicio(self, data_inicio=''):
-        self.data_inicio = data_inicio
-    def getData_Inicio(self):
-        return self.data_inicio
-
-    def setData_Fim(self, data_fim=''):
-        self.data_fim = data_fim
-    def getData_Fim(self):
-        return self.data_fim
-
-    def setPremiacao(self, premiacao=''):
-        self.premiacao = premiacao
-    def getPremiacao(self):
-        return self.premiacao
-
-    def __str__(self):
-        return self.nome_evento
 
 
 

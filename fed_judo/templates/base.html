@@ -52,14 +52,29 @@
         <ul class="nav navbar-nav navbar-right">
               <!--<li><a href="cadastro_usuario"><span class="glyphicon glyphicon-user"></span>Cadastre-se</a></li>-->
               {% if user.username %}
-              <li><a id="logindex" href="interface_usuario"><span class="glyphicon glyphicon-user"></span> {{user.username}}</a></li>
-              <li>
+              {% if user.username != "admin" %}
+              <li><a id="logindex" href="/interface_usuario"><span class="glyphicon glyphicon-user"></span>{{user.username}}</a>
+              </li>
+
+               <li>
                 <a data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-option-vertical"></span></a>
                   <ul class="dropdown-menu">
                     <li><a href="interface_usuario"> Meu Perfil</a></li>
                     <li><a href="logout"> Sair</a></li>
                   </ul>
               </li>
+              {% else %}
+              <li><a id="logindex" href="/admin"><span class="glyphicon glyphicon-user"></span>{{user.username}}</a>
+              </li>
+
+              <li>
+                <a data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-option-vertical"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/admin"> Meu Perfil</a></li>
+                    <li><a href="logout"> Sair</a></li>
+                  </ul>
+              </li>
+              {% endif %}
               {% else %}
               <li><a id="logindex" href="login"><span class="glyphicon glyphicon-user"></span> Login</a></li>
 
