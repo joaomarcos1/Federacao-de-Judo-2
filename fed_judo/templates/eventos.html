@@ -17,7 +17,7 @@
           </div>
             {% for a in eventos %}
               <hr>
-
+              {% if eventos.status_Evento == "Invalidado" %}
               <h5> {{a.data_inicio}} a {{a.data_fim}}</h5>
 
               <h3 class="text-info" > {{a.nome_evento}}</h3
@@ -26,6 +26,7 @@
 
               {% if user.username != '' %}
               <br><br><a href="#">Inscreva-se No Evento!</a>
+              {% endif %}
               {% endif %}
               <hr>
           {% endfor %}

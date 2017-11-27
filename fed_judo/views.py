@@ -4,7 +4,7 @@ from .models import Usuario, Evento, FaleConosco, Academia, Noticia
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
-from .forms import LoginForm
+from .forms import LoginForm, RegistrationForm
 from datetime import datetime
 
 from django.http import HttpResponse,HttpResponseRedirect
@@ -143,7 +143,7 @@ def cadastro_usuario(request):
 
 
 
-'''
+
 def cadastro_usuario(request):
 	usuario = Usuario()
 	codigo = 0
@@ -168,7 +168,32 @@ def cadastro_usuario(request):
 		codigo = 2
 		return render(request,'cadastro_usuario.html',{'nome':usuario.getNome(),'endereco':usuario.getEndereco(),'telefone':usuario.getTelefone(),'data_nascimento':usuario.getDatadeNasciento(),'cpf':usuario.getCpf(),'username':usuario.getUsername(),'codigo':codigo})
 	return render(request,'cadastro_usuario.html',{'codigo':codigo})
+'''
+def cadastro_usuario(request):
+        form = RegistrationForm(request.POST or None)        
+        if form.is_valid():
+            user = form.save(commit=False)
+            username = form.cleaned_data['username']
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']          
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password1']
+            password2 = form.cleaned_data['password2']
+            if password != password2:
+                if first_name == '' or last_name == '' or email == '':
+                    return render(request, 'cadastro_usuario.html')
+                else:
+                    return render(request, 'cadastro_usuario.html')
+            elif first_name == '' or last_name == '' or email == '':
+                return render(request, 'cadastro_usuario.html')
+            user.set_password(password)
+            user.save()
 
+
+            if user is not None:
+                if user.is_active:
+                    return redirect('/interface_usuario')                    
+        return render(request, 'cadastro_usuario.html', {'form':form})
 
 
 def fale_conosco(request):
@@ -277,6 +302,7 @@ def informacoes_eventos(request):
 
 
 
+# ---------------------------------------------------------------------------------------------------
 
 
 #  VIEWS NAO UTILIZADAS - NAO MEXER
@@ -311,28 +337,4 @@ def login_alternativo(request):
             else:
                 return render(request, 'login.html', {'error_message': 'Invalid login'})
     return render(request, 'login.html')
-def cadastro_usuario(request):
-        form = RegistrationForm(request.POST or None)        
-        if form.is_valid():
-            user = form.save(commit=False)
-            username = form.cleaned_data['username']
-            first_name = form.cleaned_data['first_name']
-            last_name = form.cleaned_data['last_name']          
-            email = form.cleaned_data['email']
-            password = form.cleaned_data['password1']
-            password2 = form.cleaned_data['password2']
-            if password != password2:
-                if first_name == '' or last_name == '' or email == '':
-                    return render(request, 'cadastro_usuario.html')
-                else:
-                    return render(request, 'cadastro_usuario.html')
-            elif first_name == '' or last_name == '' or email == '':
-                return render(request, 'cadastro_usuario.html')
-            user.set_password(password)
-            user.save()
 
-
-            if user is not None:
-                if user.is_active:
-                    return redirect('/register_success')                    
-        return render(request, 'cadastro_usuario.html', {'form':form})
