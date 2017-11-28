@@ -15,49 +15,33 @@
      <div class="col-sm-10">
        <h1>Academias</h1>
        <div class="collapse navbar-collapse" id="myNavbar">
-
+        <hr>
        </div>
-       <hr>
-
-
-
-
-
-          <table class="table">
-  			  <thead class="thead-default">
-  			    <tr>
-
-  			      <th>Academia</th>
-              <th>Endereço</th>
-              <th>Telefone</th>
-              <th>E-Mail</th>
-  			    </tr>
-  			  </thead>
-  			  <tbody>
-            {% for a in academias %}
-  			    <tr>
-
-  			      <td>{{a.nome_Academia}}</td>
-              <td>{{a.endereco_academia}}</td>
-  			      <td>
+       
+          <div class="col-sm-9">
+              <br><br><br><br>
+              {% for a in academias %}
+  			     
+              <hr>
+  			      <h3 class="text-info" > {{a.nome_Academia}}</h3>
+              <h5>{{a.endereco_academia}}</h5>
+  			      <h5>
                 {% if a.telefone %}
                 {{a.telefone}}
-                {% else %}
-                  Nao tem Telefone
+
                 {% endif %}
-              </td>
-              <td>{{a.email}}</td>
-  			    </tr>
+              </h5>
+              <h5>{{a.email}}</h5>
+  			    
             {% endfor %}
-
-
-  			  </tbody>
-  			</table>
-
-
-                </div>
-              </div>
+          </div>
+            <div class="col-sm-3">
+              <a href="cadastro_academias"> <ins>Cadastre sua academia clicando aqui!</ins></a>
             </div>
+        
+    </div>
+  </div>
+</div>
 
 
 
