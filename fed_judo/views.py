@@ -314,6 +314,7 @@ def informacoes_eventos(request):
 
 def cadastro_em_evento(request):
     eventos = Evento.objects.all()
+    
     return render(request, 'cadastro_em_evento.html', {'eventos':eventos})
 
 # ---------------------------------------------------------------------------------------------------

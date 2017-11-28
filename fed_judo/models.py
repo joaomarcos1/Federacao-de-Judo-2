@@ -73,7 +73,7 @@ class Usuario(models.Model):
     tipo_usuario = models.ForeignKey(TipoUsuario, default=1)
     telefone = models.IntegerField()
     endereco = models.CharField(max_length=50)
-    data_nascimento = models.DateTimeField(blank=True,null=True)
+    data_nascimento = models.DateField(blank=True,null=True)
     eventos_cadastrado = models.ForeignKey(Evento, default=1)
     #login = models.OneToOneField(User)
     #username = models.CharField(max_length=50,unique=True,null=True)
