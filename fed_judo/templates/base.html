@@ -10,12 +10,15 @@
     <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
     <script type="text/javascript" src="{% static 'css/bootstrap-3.3.7/js/bootstrap.js' %}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="icon" href="static/img/logo.icon" type="image/x-icon" />
+    <link rel="shortcut icon" href="static/img/logo.icon" type="image/x-icon" />
+
 
   </head>
 
 
-  <body style="background-color: white">
+  <body style="background-color: #fafffe">
 
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
@@ -53,7 +56,7 @@
               <!--<li><a href="cadastro_usuario"><span class="glyphicon glyphicon-user"></span>Cadastre-se</a></li>-->
               {% if user.username %}
               {% if user.username != "admin" %}
-              <li><a id="logindex" href="/interface_usuario"><span class="glyphicon glyphicon-user"></span>{{user.username}}</a>
+              <li><a id="logindex" href="/interface_usuario"><span class="glyphicon glyphicon-user" style="padding-right: 0.4em;"></span>{{user.username}}</a>
               </li>
 
                <li>
@@ -76,10 +79,10 @@
               </li>
               {% endif %}
               {% else %}
-              <li><a id="logindex" href="login"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+              <li><a id="logindex" href="login"><span class="glyphicon glyphicon-user" style="padding-right: 0.4em;"></span>Login</a></li>
 
 
-              <li><a href="cadastro_usuario"><span class="glyphicon glyphicon-user"></span>Cadastre-se</a></li>
+              <li><a href="cadastro_usuario"><span class="glyphicon glyphicon-user" style="padding-right: 0.4em;"></span>Cadastre-se</a></li>
               {% endif %}
               <!--
               <li><form class="form-inline pull-xs-right" style="margin-top: 8px;"> <input class="form-control" type="text"  placeholder="Pesquise">
@@ -124,11 +127,11 @@
                 </strong>
 
                 <hr>
-                <a id="oque" href="sobre" class="contato"> <ins style="text-decoration: none;">O que é a Federação de Judô</ins></a>
+                <a id="oque" href="sobre" class="contato" style="text-decoration: none;"> <ins style="text-decoration: none;">O que é a Federação de Judô</ins></a>
                 <br><br>
-                <a id="cadsr" href="cadastro_usuario" class="contato"> <ins style="text-decoration: none;">Como se cadastrar neste site</ins></a>
+                <a id="cadsr" href="cadastro_usuario" class="contato" style="text-decoration: none;"> <ins style="text-decoration: none;">Como se cadastrar neste site</ins></a>
                 <br><br>
-                <a id="cadr" href="cadastro_eventos" class="contato"> <ins style="text-decoration: none;">Como cadastrar seu evento neste site</ins></a>
+                <a id="cadr" href="cadastro_eventos" class="contato" style="text-decoration: none;"> <ins style="text-decoration: none;">Como cadastrar seu evento neste site</ins></a>
 
               </div>
 
