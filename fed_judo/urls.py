@@ -22,4 +22,7 @@ urlpatterns = [
     url(r'^informacoes_eventos$', views.informacoes_eventos, name='informacoes_eventos.html'),
     url(r'^cadastro_noticias$', views.cadastro_noticias, name='cadastro_noticias.html'),
     url(r'^logout$', views.logout, name='logout'),
+    url(r'^editar_perfil$', views.editar_perfil, name='editar_perfil'),
+    url(r'^cadastro_em_evento$', views.cadastro_em_evento, name='cadastro_em_evento.html'),
+    
 ]

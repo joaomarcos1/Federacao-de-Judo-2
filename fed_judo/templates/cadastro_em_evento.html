@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+<!-->>>>>>> af530f7209ef1c257b3041faa02b9bb95f75491b-->
+
+{% block title %}Cadastro em Eventos{% endblock %}
+
+{% block body %}
+
+	<div class="container">
+	  	<h1>Cadastro em Eventos</h1>
+	  	<br><br>
+
+	  	<form class="form-horizontal" action="#" method="POST">{% csrf_token %}
+		        <div class="form-group">
+		          <label class="control-label col-sm-3" for="nome">Escolha o Evento a se cadastrar:</label>
+		          <div class="col-sm-7">
+			          <input list="eventos" />
+			          <datalist id="eventos">
+			          {% for ev in eventos %}
+			            <option value={{ev.nome_evento}}>{{ev.nome_evento}}</option>
+			          {% endfor %}
+			         </datalist>
+		          </div>
+		        </div>
+
+		        <div class="form-group">
+          			<div class="col-sm-offset-2 col-sm-10">
+            			<button type="submit" class="btn btn-default">Enviar</button>
+            			<button type="reset" class="btn btn-default">Limpar</button>
+          			</div>
+       			</div>
+		  		
+		</form>
+  	</div>
+{% endblock %}

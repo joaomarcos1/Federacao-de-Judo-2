@@ -25,6 +25,8 @@
               <h6>Ocorrrerá em: {{a.local}}</h6>
               {% if user.username != '' %}
               <br><br><a href="#">Inscreva-se No Evento!</a>
+              {% elif user.username == "admin" %}
+              <br>
               {% endif %}
              
               <hr>

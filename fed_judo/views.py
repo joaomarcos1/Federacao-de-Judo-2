@@ -13,9 +13,6 @@ from django.contrib import auth
 from random import randint
 
 
-
-
-
 def academias(request):
     #posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
     academias = Academia.objects.all()#.order_by('published_date')
@@ -43,6 +40,7 @@ def sobre(request):
     	#	return render (request, 'cadastro_usuario.html')
  #   	return render (request, 'cadastro_usuario.html')
  #  	return render (request, 'cadastro_usuario.html',{})
+
 
 def eventos(request):
 
@@ -297,10 +295,26 @@ def logout(request):
 	return render_to_response('index.html')
 
 
+def editar_perfil(request):
+    alteracao = Usuario()
+    codigo = 0
+    if(request.method == 'POST'):
+        request.user.cpf = request.POST.get('cpf')
+        request.user.telefone = request.POST.get('telefone')
+        request.user.endereco = request.POST.get('endereco')
+        request.user.data_nascimento = request.POST.get('data_nascimento')
+        request.user.save()
+
+    return render (request, 'editar_perfil.html', {'codigo':codigo})
+
 def informacoes_eventos(request):
     return render (request, 'informacoes_eventos.html')
 
 
+
+def cadastro_em_evento(request):
+    eventos = Evento.objects.all()
+    return render(request, 'cadastro_em_evento.html', {'eventos':eventos})
 
 # ---------------------------------------------------------------------------------------------------
 
