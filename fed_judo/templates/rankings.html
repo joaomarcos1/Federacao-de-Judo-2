@@ -41,8 +41,8 @@
 
           {% for ac in academias %}
           <tr>
-
-  			      <th scope="row"></th>
+              <td>{{forloop.counter}}</td>
+  			      
   			      <td>{{ac.nome_Academia}}</td>
               <td>
                 {% if ac.pontuacao %}
@@ -51,6 +51,7 @@
                   0
                 {% endif %}
               </td>
+              <th scope="row"></th>
 
 			    </tr>
           {% endfor %}
