@@ -53,7 +53,7 @@ def eventos(request):
 
 
 def rankings(request):
-    academias = Academia.objects.all().order_by('pontuacao')
+    academias = Academia.objects.all().order_by('pontuacao').reverse()
     return render (request, 'rankings.html', {'academias':academias})
 
 
