@@ -19,10 +19,11 @@
        </div>
        
           <div class="col-sm-9">
-              <br><br><br><br>
+              <br><br>
+              <hr><hr>
               {% for a in academias %}
   			     
-              <hr>
+              
   			      <h3 class="text-info" > {{a.nome_Academia}}</h3>
               <h5>{{a.endereco_academia}}</h5>
   			      <h5>
@@ -32,7 +33,7 @@
                 {% endif %}
               </h5>
               <h5>{{a.email}}</h5>
-  			    
+  			    <hr>
             {% endfor %}
           </div>
             <div class="col-sm-3">
