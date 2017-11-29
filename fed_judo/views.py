@@ -93,7 +93,6 @@ def cadastro_eventos(request):
 
 
 def cadastro_noticias(request):
-<<<<<<< HEAD
 	noticia = Noticia()
 	codigo = 0
 	if (request.method == 'POST'):
@@ -105,7 +104,8 @@ def cadastro_noticias(request):
 		codigo = 1
 		return render (request, 'cadastro_noticias.html', {'codigo':codigo})
 	return render (request,'cadastro_noticias.html', {'codigo':codigo})
-=======
+
+'''
     noticia = Noticia()
     codigo = 0
     if (request.method == 'POST'):
@@ -118,7 +118,7 @@ def cadastro_noticias(request):
         return render (request, 'cadastro_noticias.html', {'codigo':codigo})
 
     return render (request,'cadastro_noticias.html', {'codigo':codigo})
->>>>>>> bfad977c333e45d566b155bc32236ea3b1bad0ff
+'''
 
 
 
@@ -329,7 +329,6 @@ def editar_perfil(request):
 
 '''
 def editar_perfil(request):
-<<<<<<< HEAD
 	#alteracao = Usuario()
 	print(request.user.id)
 	codigo = 0
@@ -347,7 +346,7 @@ def editar_perfil(request):
 		Usuario.setTelefone(request.POST.get('telefone'))
 		Usuario.setDataNascimento(request.POST.get('data_nascimento'))
 		Usuario.save()
-=======
+'''
     alteracao = Usuario()
     codigo = 0
     if(request.method == 'POST'):
@@ -356,29 +355,23 @@ def editar_perfil(request):
         request.user.endereco = request.POST.get('endereco')
         request.user.data_nascimento = request.POST.get('data_nascimento')
         request.user.save()
->>>>>>> bfad977c333e45d566b155bc32236ea3b1bad0ff
-
     return render (request, 'editar_perfil.html', {'codigo':codigo})
-
-
+'''
 def informacoes_eventos(request):
     return render (request, 'informacoes_eventos.html')
 
 
 
 def cadastro_em_evento(request):
-<<<<<<< HEAD
 	eventos = Evento.objects.all()
 	if(request.method == 'POST'):
 		#Usuario.setEventoCadastrado(request.POST.get('eventos'))
 		Usuario.eventos_cadastrado = request.POST.get('eventos')
 		#Usuario.save()
 	return render(request,'cadastro_em_evento.html', {'eventos':eventos})
-=======
-    eventos = Evento.objects.all()
+#   eventos = Evento.objects.all()
     
-    return render(request, 'cadastro_em_evento.html', {'eventos':eventos})
->>>>>>> bfad977c333e45d566b155bc32236ea3b1bad0ff
+#    return render(request, 'cadastro_em_evento.html', {'eventos':eventos})
 
 # ---------------------------------------------------------------------------------------------------
 
