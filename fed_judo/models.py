@@ -70,6 +70,7 @@ class Usuario(models.Model):
     cpf = models.IntegerField(unique=True,null=True)
     #nome = models.CharField(max_length=50,null=True)
     #idade = models.IntegerField(null=True)
+    sexo = models.IntegerField(default=0)
     tipo_usuario = models.ForeignKey(TipoUsuario, default=1)
     telefone = models.IntegerField()
     endereco = models.CharField(max_length=50)
@@ -210,6 +211,7 @@ class Atleta(models.Model):
     academia_Associada = models.ForeignKey(Academia)
     categoria = models.TextField()
     graduacao = models.TextField()
+    pontuacao = models.IntegerField(default=0);
 
 class Administrador(models.Model):
     carga_horaria = models.IntegerField()
