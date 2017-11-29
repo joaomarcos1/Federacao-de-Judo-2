@@ -79,6 +79,11 @@ class Usuario(models.Model):
     #username = models.CharField(max_length=50,unique=True,null=True)
     #password = models.CharField(max_length=50,null=True)
 
+
+    def setEventoCadastrado(self, eventos_cadastrado=''):
+        self.eventos_cadastrado = eventos_cadastrado
+        
+
     def setTipoUsuario(self, tipo_usuario=''):
         self.tipo_usuario = tipo_usuario
     def getTipoUsuario(self):
@@ -87,7 +92,7 @@ class Usuario(models.Model):
 
     def getCpf(self):
         return self.cpf
-    def setCpf(self, cpf=''):
+    def setCpf(self, cpf=0):
         self.cpf = cpf
 
     def getNome(self):
@@ -105,7 +110,7 @@ class Usuario(models.Model):
     def setEndereco(self,endereco=''):
         self.endereco=endereco
 
-    def getDatadeNasciento(self):
+    def getDatadeNascimento(self):
         return self.data_nascimento
     def setDatadeNascimento(self,data_nascimento=''):
         self.data_nascimento=data_nascimento;

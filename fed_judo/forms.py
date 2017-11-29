@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from .models import Usuario
-from django.contrib.auth.forms import UserCreationForm 
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm 
 
 class LoginForm(forms.Form):
     username = forms.CharField()
@@ -31,3 +31,29 @@ class RegistrationForm(UserCreationForm):
             user.save()
 
         return user
+
+
+class ProfileForm(forms.ModelForm):
+    habilidades = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple, queryset=Usuario.objects.all())
+    biografia = forms.CharField(widget=forms.Textarea)
+    class Meta:
+        model = Usuario
+        fields = ('user',
+                  'cpf',
+                  'tipo_usuario',
+                  'telefone',
+                  'endereco', 
+                  'data_nascimento',  
+                  'eventos_cadastrado'
+                  )
+        
+class EditProfileForm(UserChangeForm):
+
+    class Meta:
+        model = User
+        fields = ('email',
+                  'first_name',
+                  'last_name',
+                  'password'
+                  )
+

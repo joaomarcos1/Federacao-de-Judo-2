@@ -4,7 +4,7 @@ from .models import Usuario, Evento, FaleConosco, Academia, Noticia
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
-from .forms import LoginForm, RegistrationForm
+from .forms import LoginForm, RegistrationForm, EditProfileForm
 from datetime import datetime
 
 from django.http import HttpResponse,HttpResponseRedirect
@@ -102,7 +102,6 @@ def cadastro_noticias(request):
 		noticia.save()
 		codigo = 1
 		return render (request, 'cadastro_noticias.html', {'codigo':codigo})
-
 	return render (request,'cadastro_noticias.html', {'codigo':codigo})
 
 
@@ -298,18 +297,46 @@ def logout(request):
 
 #return render_to_response(request,'index.html')
 
-
+'''
 def editar_perfil(request):
-	alteracao = Usuario()
+    if not request.user.is_authenticated():
+        return redirect('/login')
+    else:      
+    	codigo = 0
+    	if(request.method == 'POST'):
+        	form = EditProfileForm(request.POST, instance=request.user)
+        	if form.is_valid():
+        		form.save()
+        		return redirect('/interface_usuario')
+        	else:
+        		form = EditProfileForm(instance=request.user)
+        		args = {'form': form, 'codigo':codigo}
+        		return render(request, 'editar_perfil.html', args)
+
+            
+
+'''
+def editar_perfil(request):
+	#alteracao = Usuario()
+	print(request.user.id)
 	codigo = 0
 	if(request.method == 'POST'):
-		request.user.cpf = request.POST.get('cpf')
-		request.user.telefone = request.POST.get('telefone')
-		request.user.endereco = request.POST.get('endereco')
-		request.user.data_nascimento = request.POST.get('data_nascimento')
+		'''
+		request.user.cpf.setCpf.request.POST.get('cpf')
+		request.user.telefone.setTelefone.request.POST.get('telefone')
+		request.user.endereco.setEndereco.request.POST.get('endereco')
+		request.user.data_nascimentorequest.setDataNascimento.request.POST.get('data_nascimento')
 		request.user.save()
+		'''
+		a = (int(request.POST.get('cpf')))
+		Usuario.setCpf(1111111111)
+		Usuario.setEndereco(request.POST.get('endereco'))
+		Usuario.setTelefone(request.POST.get('telefone'))
+		Usuario.setDataNascimento(request.POST.get('data_nascimento'))
+		Usuario.save()
 
 	return render (request, 'editar_perfil.html', {'codigo':codigo})
+
 
 def informacoes_eventos(request):
 	return render (request, 'informacoes_eventos.html')
@@ -318,8 +345,11 @@ def informacoes_eventos(request):
 
 def cadastro_em_evento(request):
 	eventos = Evento.objects.all()
-	
-	return render(request, 'cadastro_em_evento.html', {'eventos':eventos})
+	if(request.method == 'POST'):
+		#Usuario.setEventoCadastrado(request.POST.get('eventos'))
+		Usuario.eventos_cadastrado = request.POST.get('eventos')
+		#Usuario.save()
+	return render(request,'cadastro_em_evento.html', {'eventos':eventos})
 
 # ---------------------------------------------------------------------------------------------------
 
