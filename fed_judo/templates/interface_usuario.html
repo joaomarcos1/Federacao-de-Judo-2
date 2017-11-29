@@ -57,7 +57,7 @@
 <div class="container">
   <div class="row content">
     <div class="col-sm-3 sidenav" style="margin-top: 20px;">
-      <h4>Bem Vindo, {{user.username}}</h4>
+      <h4>Bem Vindo(a), {{user.username}}</h4>
       <ul class="nav nav-pills nav-stacked">
         <!--<li class="active"><a href="#section1">Alterar Informações</a></li>-->
         <li ><a href="/editar_perfil">Alterar Informações</a></li>
@@ -77,11 +77,11 @@
     </div>
 
     <div class="col-sm-6" style="margin-left: 60px;">
-      <h4><small>Eventos Cadastrado</small></h4>
+      <h4><small>Informações</small></h4>
       <hr>
-      <h2>Título do Evento</h2>
+      <h2>{{user.username}}</h2>
       <br>
-      <p>Evento
+      <p>Seja bem vindo(a) a Federação de Judô, aqui você poderá se inscrever em eventos e solicitar cadastro em eventos!</p>
 
     </div>
     </div>
