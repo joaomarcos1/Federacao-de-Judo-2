@@ -13,7 +13,27 @@
 
         <div class="col-sm-10">
           <h1>Ranking</h1>
-          Escolha o que Ranking que deseja visualizar:<br>
+          Escolha o que Ranking que deseja visualizar:<br><br>
+          
+          <div class="col-sm-3" style="width: 300px; margin-left: 0px">
+            <form>
+              <div class="form-group">
+                <select class="form-control" id="sel1">
+                  <option value="1">Academias</option>
+                  <option value="2">Atletas Masculinos</option>
+                  <option value="3">Atletas Femininos</option>
+                </select>
+              </div>
+            </form>
+          </div>
+
+          <div class="col-sm-3">
+              <button type="button" class="btn btn-default" onclick="filtro()">Buscar</button>
+          </div>
+          
+
+
+<!--
           <input list="filtros_rankings" />
           <datalist id="filtros_rankings">
             <option value="Academias">Academias</option>
@@ -21,51 +41,70 @@
             <option value="Atletas Femininos">Atletas Femininos</option>
 
           </datalist>
+-->
           <div class="collapse navbar-collapse" id="myNavbar">
 
           </div>
 
 
           <hr>
+          <div >
+            <table class="table">
+              <thead class="thead-default">
+                <tr>
+                  <th>Colocação</th>
+                  <th id="tipo">Academia</th>
+                  <th>Pontuação</th>
 
-          	<table class="table">
-			  <thead class="thead-default">
-			    <tr>
-			      <th>Colocação</th>
-			      <th>Academia</th>
-			      <th>Pontuação</th>
+                </tr>
+              </thead>
+              <tbody id="tabela">
 
-			    </tr>
-			  </thead>
-			  <tbody>
+                {% for ac in academias %}
+                  <tr>
+                    <td>{{forloop.counter}}</td>
+                    
+                    <td>{{ac.nome_Academia}}</td>
+                    <td>
+                      {% if ac.pontuacao %}
+                        {{ac.pontuacao}}
+                      {% else %}
+                        0
+                      {% endif %}
+                    </td>
+                  </tr>
+                {% endfor %}
 
-          {% for ac in academias %}
-          <tr>
-              <td>{{forloop.counter}}</td>
-  			      
-  			      <td>{{ac.nome_Academia}}</td>
-              <td>
-                {% if ac.pontuacao %}
-                  {{ac.pontuacao}}
-                {% else %}
-                  0
-                {% endif %}
-              </td>
-              <th scope="row"></th>
-
-			    </tr>
-          {% endfor %}
-
-			  </tbody>
-			</table>
-
-
-
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
 
 
+
+
+    <script>
+      function filtro(){
+        
+        var e = document.getElementById("sel1");
+        var itemSelecionado = e.options[e.selectedIndex].value;
+        
+        
+        if(itemSelecionado == 1){
+          
+          document.getElementById("tipo").innerHTML = "Academia";
+          document.getElementById("tabela").innerHTML = "{% for ac in academias %} <tr> <td> {{forloop.counter}} </td> <td> {{ac.nome_Academia}} </td> <td> {% if ac.pontuacao %}{{ac.pontuacao}}{% else %} 0 {% endif %} </td> </tr> {% endfor %}";
+        }else if (itemSelecionado == 2) {
+          document.getElementById("tipo").innerHTML = "Nome do Atleta";
+          document.getElementById("tabela").innerHTML = "{% for am in usuario %} {% if am.sexo == 1 %} <tr> <td> {{forloop.counter}} </td> <td> {{am.user}} </td> <td> {% if am.pontuacao %}{{am.pontuacao}}{% else %} 0 {% endif %} </td> </tr>{% else %}  {% endif %} {% endfor %}";
+        }else{
+          document.getElementById("tipo").innerHTML = "Nome do Atleta";
+          document.getElementById("tabela").innerHTML = "{% for af in usuario %} {% if af.sexo == 2 %} <tr> <td> {{forloop.counter}} </td> <td> {{af.user}} </td> <td> {% if af.pontuacao %}{{af.pontuacao}}{% else %} 0 {% endif %} </td> </tr> {% endif %}{% endfor %}";
+        }
+      }
+    </script>
 
 
 {% endblock %}
