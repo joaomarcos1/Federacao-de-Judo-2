@@ -62,19 +62,29 @@
         <h4><small style="margin-left: 40px;">NOTÍCIAS RECENTES</small></h4>
         <hr>
 
-        {% for notices in noticias %}
-        <div class="col-sm-10" style="text-align: justify; margin-left: 30px;">
-          <h2>{{notices.titulo}}</h2>
-          <h5><span class="glyphicon glyphicon-time"></span> Postado por {{notices.usuario}}, em {{notices.data_lancamento_noticia}}.</h5>
-          <hr>
-          <!--<h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>-->
-          <img width="300px" height="200px" src="{{MEDIA_URL}}{{notices.imagem.url}}" align="left" style="margin-right: 10px;">
-          <p>{{notices.corpo}}</p>
-        <br><br>
-      </div>
+       
 
-        {% endfor %}
-      
+
+        
+            <div class="col-sm-18" >
+              {% for notices in noticias%}
+                {% if not forloop.counter >= 4 %}
+                <div class="col-sm-4" >
+                    <h2>{{notices.titulo}}</h2>
+                    <h5><span class="glyphicon glyphicon-time"></span> Postado por {{notices.usuario}}, em {{notices.data_lancamento_noticia}}.</h5>
+                    
+                    <!--<h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>-->
+                    
+                    <img width="300px" height="200px" src="{{MEDIA_URL}}{{notices.imagem.url}}" style="margin-right: 10px; margin-left: 30px">
+                    
+                  <br><br>
+                </div>
+                {% endif %}
+
+                {% endfor %}
+            </div>
+        
+    
       </div>
   </div>
 </div>
