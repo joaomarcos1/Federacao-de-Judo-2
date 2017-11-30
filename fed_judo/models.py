@@ -75,6 +75,7 @@ class Usuario(models.Model):
     telefone = models.IntegerField()
     endereco = models.CharField(max_length=50)
     data_nascimento = models.DateField(blank=True,null=True)
+    pontuacao = models.FloatField(default=0)
     eventos_cadastrado = models.ManyToManyField(Evento)
     #login = models.OneToOneField(User)
     #username = models.CharField(max_length=50,unique=True,null=True)

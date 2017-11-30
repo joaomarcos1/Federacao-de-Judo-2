@@ -54,7 +54,7 @@ def eventos(request):
 
 def rankings(request):
     academias = Academia.objects.all().order_by('pontuacao').reverse()
-    usuario = Usuario.objects.all()
+    usuario = Usuario.objects.all().order_by('pontuacao').reverse()
     return render (request, 'rankings.html', {'academias':academias, 'usuario':usuario})
 
 
@@ -371,15 +371,24 @@ def informacoes_eventos(request):
     return render (request, 'informacoes_eventos.html')
 
 
-
+'''
 def cadastro_em_evento(request):
 	eventos = Evento.objects.all()
-	if(request.method == 'POST'):
+    #print (request.POST.get('sel1'))
+    if(request.method == 'POST'):
 		#Usuario.setEventoCadastrado(request.POST.get('eventos'))
 		Usuario.eventos_cadastrado = request.POST.get('eventos')
 		redirect('/interface_usuario')
 	return render(request,'cadastro_em_evento.html', {'eventos':eventos})
+'''
 
+def cadastro_em_evento(request):
+    eventos = Evento.objects.all()
+    print(request.POST.get('sel1'))
+    if (request.method == 'POST'):
+        Usuario.eventos_cadastrado = request.POST.get('eventos')
+        redirect('/interface_usuario')
+    return render(request, 'cadastro_em_evento.html', {'eventos':eventos})
 
 def noticia(request, pk):
     noticia = get_object_or_404(Noticia, pk=pk)
