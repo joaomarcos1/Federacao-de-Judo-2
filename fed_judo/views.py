@@ -307,8 +307,8 @@ def interface_usuario(request, pk=None):
 
 def logout(request):
     auth.logout(request)
-    return render_to_response('index.html')
-
+    #return render_to_response('index.html')
+    return redirect('/index')
 '''
 def editar_perfil(request):
     if not request.user.is_authenticated():

@@ -36,9 +36,12 @@
   			    <hr>
             {% endfor %}
           </div>
-            <!--<div class="col-sm-3">
-              <a href="cadastro_academias"> <ins>Cadastre sua academia clicando aqui!</ins></a>
-            </div>-->
+            {% if user.username != '' %}
+              <div class="col-sm-3">
+                <a href="cadastro_academias"> <ins>Cadastre sua academia clicando aqui!</ins></a>
+                  <hr>
+              </div>
+            {% endif %}
         
     </div>
   </div>
