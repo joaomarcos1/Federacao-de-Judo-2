@@ -19,8 +19,8 @@ class StatusEventos(models.Model):
 class Evento(models.Model):
     #usuario_proponente = models.ForeignKey(Usuario, default=1)
     nome_evento = models.TextField()
-    data_inicio = models.DateTimeField(blank=True,null=True)
-    data_fim = models.DateTimeField(blank=True,null=True)
+    data_inicio = models.DateField(blank=True,null=True)
+    data_fim = models.DateField(blank=True,null=True)
     status_evento = models.ForeignKey(StatusEventos, default=2)
     premiacao = models.TextField()
     local = models.TextField(blank=True)
