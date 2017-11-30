@@ -23,7 +23,7 @@ urlpatterns = [
     url(r'^cadastro_noticias$', views.cadastro_noticias, name='cadastro_noticias.html'),
     url(r'^logout$', views.logout, name='logout'),
     url(r'^editar_perfil$', views.editar_perfil, name='editar_perfil'),
-    url(r'^cadastro_em_evento$', views.cadastro_em_evento, name='cadastro_em_evento.html'),
-    url(r'^noticia/(?P<pk>[0-9]+)/$', views.noticia, name='noticia'),
+    url(r'^cadastro_em_evento/(?P<id>\d+)/$', views.cadastro_em_evento, name='cadastro_em_evento'),
+    url(r'^noticia/(?P<id>\d+)/$', views.noticia, name='noticia'),
     
 ]

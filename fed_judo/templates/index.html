@@ -62,16 +62,12 @@
         <h4><small style="margin-left: 40px;">NOTÍCIAS RECENTES</small></h4>
         <hr>
 
-
-       
-
-
         
             <div class="col-sm-18" >
               {% for notices in noticias%}
                 {% if not forloop.counter >= 4 %}
                 <div class="col-sm-4" >
-                    <h2>{{notices.titulo}}</h2>
+                    <h2><a href="noticia/{{notices.id}}/" style="text-decoration: none;">{{notices.titulo}}</a></h2>
                     <h5><span class="glyphicon glyphicon-time"></span> Postado por {{notices.usuario}}, em {{notices.data_lancamento_noticia}}.</h5>
                     
                     <!--<h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>-->

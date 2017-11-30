@@ -127,7 +127,10 @@ class Usuario(models.Model):
 
     def __str__(self):
         return self.user.username
-        
+       
+
+
+
 class Noticia(models.Model):
     usuario = models.OneToOneField(Usuario, default=1)
     descricao = models.CharField(max_length=100, null=True)
@@ -259,3 +262,23 @@ class FaleConosco(models.Model):
 
     def __str__(self):
         return self.nome
+
+
+class Penalidades(models.Model):
+    penalidade = models.CharField(max_length=50, null=True)
+
+    def __str__(self):
+        return self.penalidade
+
+'''
+class Lutas(models.Model):
+    participante1 = models.ForeignKey(Usuario)
+    participante2 = models.ForeignKey(Usuario)
+    vencedor = models.ForeignKey(Usuario)
+    tempo = models.FloatField(default=0)
+    qt_ponto_part_01 = models.IntegerField(default=0)
+    qt_ponto_part_02 = models.IntegerField(default=0)
+    pernalidades_part_01 = models.TextField()
+    pernalidades_part_02 = models.TextField()
+
+'''

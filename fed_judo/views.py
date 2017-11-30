@@ -365,7 +365,10 @@ def editar_perfil(request):
 
 def editar_perfil(request):
     codigo = 0
-    return render (request, 'editar_perfil.html', {'codigo':codigo})   
+    if(request.method == 'POST'):
+        redirect('/interface_usuario')
+    else:
+        return render (request, 'editar_perfil.html', {'codigo':codigo})   
 
 def informacoes_eventos(request):
     return render (request, 'informacoes_eventos.html')
@@ -382,22 +385,25 @@ def cadastro_em_evento(request):
 	return render(request,'cadastro_em_evento.html', {'eventos':eventos})
 '''
 
-def cadastro_em_evento(request):
-    eventos = Evento.objects.all()
-    print(request.POST.get('sel1'))
-    if (request.method == 'POST'):
-        Usuario.eventos_cadastrado = request.POST.get('eventos')
-        redirect('/interface_usuario')
+def cadastro_em_evento(request, id):
+    eventos = Evento.objects.all().filter(id=id)
+    #if (request.method == 'POST'):
+    #    print("aaa")
     return render(request, 'cadastro_em_evento.html', {'eventos':eventos})
 
-def noticia(request, pk):
-    noticia = get_object_or_404(Noticia, pk=pk)
-    return render(request, '/noticial.html', {'noticia':noticia})
+
+def noticia(request, id):
+    #noticia = get_object_or_404(Noticia, id)
+    noticia = Noticia.objects.get(id=id)
+    return render(request, 'noticia.html', {'noticia':noticia})
     #return render(request, 'noticia.html')
 
 #   eventos = Evento.objects.all()
     
 #    return render(request, 'cadastro_em_evento.html', {'eventos':eventos})
+
+
+
 
 # ---------------------------------------------------------------------------------------------------
 

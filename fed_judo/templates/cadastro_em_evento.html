@@ -45,9 +45,12 @@
 		          <div class="col-sm-3" style="width: 300px; margin-left: 0px">
             <form action="#" method="POST">{% csrf_token %}
               <div class="form-group">
+              	Escolha o evento ao qual deseja se cadastrar:<br>
                 <select class="form-control" id="sel1">
 			          {% for ev in eventos %}
+			          	
 			            <option value={{ev.nome_evento}}>{{ev.nome_evento}}</option>
+			            
 			          {% endfor %}
                 </select>
                 <br>
