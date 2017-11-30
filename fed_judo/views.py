@@ -22,7 +22,7 @@ def academias(request):
 
 # Create your views here.
 def index(request):
-    noticias = Noticia.objects.all()
+    noticias = Noticia.objects.all().order_by('data_lancamento_noticia').reverse()
     eventos = Evento.objects.all()
     return render (request, 'index.html', {'noticias':noticias, 'eventos':eventos})
 
