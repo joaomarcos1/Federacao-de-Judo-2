@@ -370,6 +370,7 @@ def editar_perfil(request):
     else:
         return render (request, 'editar_perfil.html', {'codigo':codigo})   
 
+
 def informacoes_eventos(request):
     return render (request, 'informacoes_eventos.html')
 
@@ -387,6 +388,8 @@ def cadastro_em_evento(request):
 
 def cadastro_em_evento(request, id):
     eventos = Evento.objects.all().filter(id=id)
+    Usuario.setEventoCadastrado(eventos)
+    Usuario.save
     #if (request.method == 'POST'):
     #    print("aaa")
     return render(request, 'cadastro_em_evento.html', {'eventos':eventos})
