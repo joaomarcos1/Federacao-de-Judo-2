@@ -309,6 +309,7 @@ def logout(request):
     auth.logout(request)
     #return render_to_response('index.html')
     return redirect('/index')
+
 '''
 def editar_perfil(request):
     if not request.user.is_authenticated():
@@ -328,25 +329,29 @@ def editar_perfil(request):
             
 
 '''
+
+'''
 def editar_perfil(request):
 	#alteracao = Usuario()
-	print(request.user.id)
+	#print(request.user.id)
 	codigo = 0
 	if(request.method == 'POST'):
-		'''
+		
 		request.user.cpf.setCpf.request.POST.get('cpf')
 		request.user.telefone.setTelefone.request.POST.get('telefone')
 		request.user.endereco.setEndereco.request.POST.get('endereco')
 		request.user.data_nascimentorequest.setDataNascimento.request.POST.get('data_nascimento')
 		request.user.save()
-		'''
+		
 		a = (int(request.POST.get('cpf')))
 		Usuario.setCpf(1111111111)
 		Usuario.setEndereco(request.POST.get('endereco'))
 		Usuario.setTelefone(request.POST.get('telefone'))
 		Usuario.setDataNascimento(request.POST.get('data_nascimento'))
 		Usuario.save()
-'''
+    #return render (request,'editar_perfil.html',{'codigo':codigo})       
+    return render (request,'editar_perfil.html',{'codigo':codigo})
+
     alteracao = Usuario()
     codigo = 0
     if(request.method == 'POST'):
@@ -356,7 +361,12 @@ def editar_perfil(request):
         request.user.data_nascimento = request.POST.get('data_nascimento')
         request.user.save()
     return render (request, 'editar_perfil.html', {'codigo':codigo})
-'''
+ '''
+
+def editar_perfil(request):
+    codigo = 0
+    return render (request, 'editar_perfil.html', {'codigo':codigo})   
+
 def informacoes_eventos(request):
     return render (request, 'informacoes_eventos.html')
 
@@ -367,8 +377,15 @@ def cadastro_em_evento(request):
 	if(request.method == 'POST'):
 		#Usuario.setEventoCadastrado(request.POST.get('eventos'))
 		Usuario.eventos_cadastrado = request.POST.get('eventos')
-		#Usuario.save()
+		redirect('/interface_usuario')
 	return render(request,'cadastro_em_evento.html', {'eventos':eventos})
+
+
+def noticia(request, pk):
+    noticia = get_object_or_404(Noticia, pk=pk)
+    return render(request, '/noticial.html', {'noticia':noticia})
+    #return render(request, 'noticia.html')
+
 #   eventos = Evento.objects.all()
     
 #    return render(request, 'cadastro_em_evento.html', {'eventos':eventos})

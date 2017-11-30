@@ -71,11 +71,11 @@ class Usuario(models.Model):
     #nome = models.CharField(max_length=50,null=True)
     #idade = models.IntegerField(null=True)
     sexo = models.IntegerField(default=0)
-    tipo_usuario = models.ForeignKey(TipoUsuario, default=1)
+    tipo_usuario = models.ManyToManyField(TipoUsuario)
     telefone = models.IntegerField()
     endereco = models.CharField(max_length=50)
     data_nascimento = models.DateField(blank=True,null=True)
-    eventos_cadastrado = models.ForeignKey(Evento, default=1)
+    eventos_cadastrado = models.ManyToManyField(Evento)
     #login = models.OneToOneField(User)
     #username = models.CharField(max_length=50,unique=True,null=True)
     #password = models.CharField(max_length=50,null=True)
@@ -129,6 +129,7 @@ class Usuario(models.Model):
         
 class Noticia(models.Model):
     usuario = models.OneToOneField(Usuario, default=1)
+    descricao = models.CharField(max_length=100, null=True)
     titulo = models.TextField()
     corpo = models.TextField()
     data_lancamento_noticia = models.DateTimeField(null=True)
